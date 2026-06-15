@@ -2,6 +2,8 @@
 
 LMS (Laundry Management System) adalah aplikasi dashboard internal berbasis web yang dirancang untuk memudahkan pengelolaan operasional bisnis laundry secara terpusat.
 
+![Dashboard LMS](screenshots/sc1.webp)
+
 ## Fitur Utama
 1. **Dashboard**: Ringkasan statistik (Pelanggan, Layanan, Transaksi, Pendapatan Hari Ini), aktivitas transaksi terbaru, serta grafik pendapatan 7 hari terakhir secara visual menggunakan Chart.js.
 2. **Kelola Pelanggan**: Pencatatan data pelanggan laundry lengkap dengan nama, nomor kontak, alamat, serta pencarian & paginasi data (mendukung soft deletes).
