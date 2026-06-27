@@ -1,50 +1,62 @@
 # Laundry Management System (LMS)
 
-LMS (Laundry Management System) adalah aplikasi dashboard internal berbasis web yang dirancang untuk memudahkan pengelolaan operasional bisnis laundry secara terpusat.
+LMS (Laundry Management System) adalah aplikasi berbasis web yang dirancang untuk memudahkan operasional bisnis laundry secara terpusat bagi admin/staff, sekaligus menyediakan portal pemesanan online bagi pelanggan.
 
 ![Dashboard LMS](screenshots/sc1.webp)
 
 ---
 
-## 🚀 Update UAS: Landing Page & Dashboard Pelanggan
+## 🚀 Fitur Proyek (Update UAS)
 
-Update terbaru untuk UAS menambahkan fungsionalitas publik berupa landing page interaktif dan dashboard khusus pelanggan untuk mempermudah pemesanan laundry secara online:
+Sistem ini memiliki dua kategori akses utama: **Landing Page & Portal Pelanggan** (Publik) serta **Dashboard Internal** (Admin/Staff).
 
 ### 1. Landing Page Pelanggan
-Menampilkan seluruh informasi penting dari toko laundry secara publik, meliputi:
-- **Informasi Layanan**: Daftar harga dan estimasi waktu untuk setiap tipe pengerjaan laundry.
+Halaman utama interaktif yang dapat diakses oleh publik untuk mengetahui informasi toko laundry:
+- **Informasi Layanan**: Menampilkan daftar harga per kg, estimasi pengerjaan, dan status keaktifan layanan secara real-time dari database.
 - **Cara Pemesanan**: Alur pemesanan mudah bagi pelanggan baru.
-- **Informasi Kontak**: Lokasi, WhatsApp, dan detail kontak operasional toko.
+- **Informasi Kontak**: Nama toko, nomor WhatsApp interaktif, dan alamat lengkap laundry (dapat diubah dinamis dari pengaturan admin).
 
 ![Landing Page Laundry](screenshots/sc2.webp)
 
-### 2. Dashboard Pelanggan (Pelanggan Portal)
-Portal khusus di mana pelanggan dapat melakukan:
-- **Pemesanan Mandiri**: Formulir pemesanan laundry online.
-- **Opsi Pengiriman & Penjemputan**: Pilihan pengiriman antar-jemput yang fleksibel dan dapat disesuaikan dengan kebutuhan pelanggan (misalnya: Ambil Sendiri, Diantar Toko, dll).
-- **Pelacakan Status Pesanan**: Melacak status pengerjaan pakaian secara real-time mulai dari antrean, proses cuci, setrika, hingga siap diambil/dikirim.
+### 2. Portal & Dashboard Pelanggan
+Portal mandiri bagi pelanggan setelah melakukan registrasi/login:
+- **Registrasi Akun**: Pelanggan dapat mendaftar sendiri melalui halaman `/register` yang otomatis akan membuat data profil pelanggan baru.
+- **Pemesanan Mandiri**: Melakukan booking order laundry secara online.
+- **Opsi Pengiriman & Penjemputan**:
+  - `Kirim Sendiri` (Pelanggan mengantar baju ke toko)
+  - `Jemput Saja` (Petugas mengambil baju ke alamat pelanggan)
+  - `Antar Saja` (Petugas mengantar baju kembali ke pelanggan setelah selesai)
+  - `Jemput dan Antar` (Layanan penuh antar-jemput)
+- **Alamat Pengiriman**: Wajib diisi jika memilih opsi jemput/antar.
+- **Pelacakan Status Real-time**: Pelanggan dapat memantau status cucian (`Menunggu`, `Diproses`, `Selesai`, `Diambil`) serta status pengiriman (`None`, `Menunggu Penjemputan`, `Dalam Penjemputan`, `Selesai Dijemput`, `Menunggu Pengantaran`, `Dalam Pengantaran`, `Selesai Diantar`).
 
 ![Dashboard Pelanggan](screenshots/sc3.webp)
 
 ---
 
-## Fitur Utama Dashboard Admin
-1. **Dashboard**: Ringkasan statistik (Pelanggan, Layanan, Transaksi, Pendapatan Hari Ini), aktivitas transaksi terbaru, serta grafik pendapatan 7 hari terakhir secara visual menggunakan Chart.js.
-2. **Kelola Pelanggan**: Pencatatan data pelanggan laundry lengkap dengan nama, nomor kontak, alamat, serta pencarian & paginasi data (mendukung soft deletes).
-3. **Layanan Laundry**: Konfigurasi jenis layanan (Cuci Kering, Cuci Setrika, dll) beserta harga per kg, estimasi pengerjaan, dan status aktif/nonaktif.
-4. **Transaksi Laundry**: Pencatatan order laundry masuk, kalkulasi biaya otomatis, pembuatan nomor invoice unik (`INV-YYYYMMDD-XXXX`), estimasi tanggal selesai otomatis, pencatatan catatan khusus, serta pembaruan status transaksi secara langsung.
-5. **Laporan & Pendapatan**: Filter data transaksi berdasarkan periode waktu tertentu (Hari Ini, Minggu Ini, Bulan Ini, Kustom), ringkasan metrik keuangan, serta fitur ekspor laporan ke dalam format **Excel/CSV** dan unduhan **PDF** yang diproses menggunakan library **DOMPDF**.
-6. **Kelola User**: Manajemen data pengguna internal (tambah, ubah password opsional, pencarian, dan hapus user) dengan keamanan anti-self-delete.
-7. **Pengaturan**: Modifikasi profil laundry (nama toko, WhatsApp, alamat, logo) serta pembaruan profil pengguna & password.
+### 3. Dashboard Admin & Staff
+Aplikasi internal untuk mengelola operasional bisnis laundry:
+- **Dashboard**: Ringkasan statistik (Total Pelanggan, Total Layanan, Total Transaksi, Pendapatan Hari Ini), aktivitas transaksi terbaru, serta grafik pendapatan 7 hari terakhir menggunakan Chart.js.
+- **Kelola Pelanggan**: Pencatatan data pelanggan laundry lengkap dengan nama, nomor kontak, alamat, pencarian, dan paginasi data (mendukung soft deletes).
+- **Layanan Laundry**: Konfigurasi jenis layanan (Cuci Kering, Cuci Setrika, dll) beserta harga per kg, estimasi pengerjaan, dan status aktif/nonaktif.
+- **Transaksi Laundry**:
+  - Pencatatan transaksi masuk (offline & online).
+  - Kalkulasi biaya otomatis (Berat × Harga per Kg) setelah pakaian ditimbang oleh admin.
+  - Penomoran invoice otomatis (`INV-YYYYMMDD-XXXX`).
+  - Pembaruan status cucian secara langsung.
+  - **Pembaruan Status Pengiriman**: Mengubah status pengantaran/penjemputan cucian pelanggan secara bertahap.
+- **Laporan & Pendapatan**: Filter laporan berdasarkan periode waktu (Hari Ini, Minggu Ini, Bulan Ini, Kustom), ringkasan metrik keuangan, serta fitur ekspor laporan ke dalam format **Excel/CSV** dan cetak **PDF** menggunakan library **DOMPDF**.
+- **Kelola User**: Manajemen data pengguna internal (tambah, ubah password opsional, pencarian, dan hapus user) dengan keamanan anti-self-delete.
+- **Pengaturan**: Modifikasi profil laundry (nama toko, WhatsApp, alamat, logo) serta pembaruan profil pengguna & password.
 
 ---
 
 ## Teknologi
 - **Backend**: PHP 8.2+ & CodeIgniter 4 (MVC)
-- **Database**: MySQL 8+
+- **Database**: MySQL 8+ (Mendukung Foreign Keys, Migrations, Seeders, dan Soft Deletes)
 - **Frontend**: Tailwind CSS & Google Fonts "Baloo 2"
-- **Ekspor Dokumen**: DOMPDF & Native CSV Generator
-- **Autentikasi & Keamanan**: Session Auth Filter, Password Hashing, dan CSRF Protection
+- **Ekspor Dokumen**: DOMPDF (PDF) & Native CSV Generator
+- **Autentikasi & Keamanan**: Session Auth Filter (Admin & Customer), Password Hashing (bcrypt), dan CSRF Protection
 
 ---
 
@@ -81,7 +93,8 @@ Aplikasi sekarang dapat diakses melalui browser Anda di: **`http://localhost:808
 ---
 
 ## Kredensial Login Default
-Gunakaan akun bawaan hasil seeding untuk masuk ke sistem dashboard:
+Gunakan akun bawaan hasil seeding untuk masuk ke sistem dashboard admin:
 - **Username**: `admin`
 - **Password**: `admin123`
 
+Untuk mengakses portal pelanggan, Anda dapat melakukan **Registrasi Akun Baru** secara mandiri melalui tombol daftar di halaman login/landing page.
