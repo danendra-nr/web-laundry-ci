@@ -200,6 +200,20 @@ class TransaksiController extends BaseController
         return redirect()->back()->with('error', 'Status tidak valid.');
     }
 
+    public function updateDelivery($id)
+    {
+        $statusPengiriman = $this->request->getPost('status_pengiriman');
+        $validStatuses = ['None', 'Menunggu Penjemputan', 'Dalam Penjemputan', 'Selesai Dijemput', 'Menunggu Pengantaran', 'Dalam Pengantaran', 'Selesai Diantar'];
+
+        if (in_array($statusPengiriman, $validStatuses)) {
+            $transaksiModel = new TransaksiModel();
+            $transaksiModel->update($id, ['status_pengiriman' => $statusPengiriman]);
+            return redirect()->back()->with('success', 'Status pengiriman berhasil diubah menjadi ' . $statusPengiriman);
+        }
+
+        return redirect()->back()->with('error', 'Status pengiriman tidak valid.');
+    }
+
     public function delete($id)
     {
         $transaksiModel = new TransaksiModel();

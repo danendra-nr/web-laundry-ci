@@ -6,7 +6,7 @@ use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class AuthFilter implements FilterInterface
+class CustomerAuthFilter implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
@@ -14,8 +14,8 @@ class AuthFilter implements FilterInterface
             return redirect()->to('/login')->with('error', 'Silakan login terlebih dahulu.');
         }
 
-        if (session()->get('role') !== 'admin') {
-            return redirect()->to('/customer/dashboard')->with('error', 'Anda tidak memiliki akses ke dashboard admin.');
+        if (session()->get('role') !== 'pelanggan') {
+            return redirect()->to('/dashboard')->with('error', 'Anda tidak memiliki akses ke halaman tersebut.');
         }
     }
 

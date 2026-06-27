@@ -79,6 +79,13 @@
                 <p class="text-gray-900 font-extrabold"><?= htmlspecialchars($transaksi['nama_pelanggan'] ?? 'Pelanggan Umum') ?></p>
                 <p class="text-xs font-semibold text-gray-500">HP: <?= htmlspecialchars($transaksi['no_hp_pelanggan'] ?? '-') ?></p>
                 <p class="text-xs font-medium text-gray-500 max-w-xs leading-relaxed">Alamat: <?= htmlspecialchars($transaksi['alamat_pelanggan'] ?? '-') ?></p>
+                <?php if (!empty($transaksi['opsi_pengiriman']) && $transaksi['opsi_pengiriman'] !== 'Kirim Sendiri'): ?>
+                    <div class="mt-4 pt-4 border-t border-gray-150 text-xs font-semibold text-gray-500">
+                        <span class="font-bold text-gray-400 uppercase tracking-wider block mb-1">Informasi Pengiriman (<?= esc($transaksi['opsi_pengiriman']) ?>)</span>
+                        <p class="text-gray-700 font-bold">Status: <?= esc($transaksi['status_pengiriman']) ?></p>
+                        <p class="text-gray-600 mt-0.5 leading-relaxed">Alamat Kirim: <?= esc($transaksi['alamat_pengiriman']) ?></p>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
 
@@ -146,4 +153,49 @@
         Terima Kasih Atas Kepercayaan Anda!
     </div>
 </div>
+
+<!-- Delivery Management Card (Admin Panel) -->
+<?php if (!empty($transaksi['opsi_pengiriman']) && $transaksi['opsi_pengiriman'] !== 'Kirim Sendiri'): ?>
+    <div class="max-w-3xl mt-6 bg-white rounded-3xl border border-gray-150 shadow-sm overflow-hidden p-8 print:hidden">
+        <h3 class="text-lg font-black text-gray-950 mb-4 flex items-center gap-2">
+            <svg class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1-1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 01.293.707V15a1 1 0 01-1 1h-2" /></svg>
+            Kelola Pengiriman & Penjemputan
+        </h3>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+            <div>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Opsi Pengiriman</span>
+                <span class="font-bold text-gray-800"><?= esc($transaksi['opsi_pengiriman']) ?></span>
+            </div>
+            <div>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Status Saat Ini</span>
+                <span class="inline-block mt-1 px-3 py-1 rounded-full text-xs font-extrabold bg-blue-50 text-blue-700 border border-blue-100">
+                    <?= esc($transaksi['status_pengiriman']) ?>
+                </span>
+            </div>
+            <div class="sm:col-span-2">
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Alamat Pengiriman/Penjemputan</span>
+                <p class="font-semibold text-gray-700 mt-1"><?= esc($transaksi['alamat_pengiriman']) ?></p>
+            </div>
+        </div>
+
+        <form action="<?= base_url('transaksi/updateDelivery/' . $transaksi['id']) ?>" method="POST" class="border-t border-gray-100 pt-6 flex flex-col sm:flex-row items-end gap-4">
+            <?= csrf_field() ?>
+            <div class="flex-1 w-full">
+                <label for="status_pengiriman" class="block text-xs font-bold text-gray-400 uppercase mb-2">Update Status Pengiriman</label>
+                <select name="status_pengiriman" id="status_pengiriman" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-800 font-semibold focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all outline-none">
+                    <option value="Menunggu Penjemputan" <?= $transaksi['status_pengiriman'] === 'Menunggu Penjemputan' ? 'selected' : '' ?>>Menunggu Penjemputan</option>
+                    <option value="Dalam Penjemputan" <?= $transaksi['status_pengiriman'] === 'Dalam Penjemputan' ? 'selected' : '' ?>>Dalam Penjemputan</option>
+                    <option value="Selesai Dijemput" <?= $transaksi['status_pengiriman'] === 'Selesai Dijemput' ? 'selected' : '' ?>>Selesai Dijemput</option>
+                    <option value="Menunggu Pengantaran" <?= $transaksi['status_pengiriman'] === 'Menunggu Pengantaran' ? 'selected' : '' ?>>Menunggu Pengantaran</option>
+                    <option value="Dalam Pengantaran" <?= $transaksi['status_pengiriman'] === 'Dalam Pengantaran' ? 'selected' : '' ?>>Dalam Pengantaran</option>
+                    <option value="Selesai Diantar" <?= $transaksi['status_pengiriman'] === 'Selesai Diantar' ? 'selected' : '' ?>>Selesai Diantar</option>
+                </select>
+            </div>
+            <button type="submit" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-6 rounded-xl shadow-md transition-all text-sm flex items-center justify-center gap-2">
+                Simpan Status
+            </button>
+        </form>
+    </div>
+<?php endif; ?>
 <?= $this->endSection() ?>

@@ -3,10 +3,12 @@
 use CodeIgniter\Router\RouteCollection;
 
 /** @var RouteCollection $routes */
-$routes->get('/', 'AuthController::login');
+$routes->get('/', 'Home::index');
 $routes->get('/login', 'AuthController::login');
 $routes->post('/login', 'AuthController::loginProcess');
 $routes->get('/logout', 'AuthController::logout');
+$routes->get('/register', 'AuthController::register');
+$routes->post('/register', 'AuthController::registerProcess');
 
 $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->get('dashboard', 'DashboardController::index');
@@ -36,6 +38,7 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->post('transaksi/update/(:num)', 'TransaksiController::update/$1');
     $routes->post('transaksi/delete/(:num)', 'TransaksiController::delete/$1');
     $routes->post('transaksi/status/(:num)', 'TransaksiController::status/$1');
+    $routes->post('transaksi/updateDelivery/(:num)', 'TransaksiController::updateDelivery/$1');
 
     // Laporan
     $routes->get('laporan', 'LaporanController::index');
@@ -52,4 +55,10 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->get('user/edit/(:num)', 'UserController::edit/$1');
     $routes->post('user/update/(:num)', 'UserController::update/$1');
     $routes->post('user/delete/(:num)', 'UserController::delete/$1');
+});
+
+$routes->group('customer', ['filter' => 'customer_auth'], function($routes) {
+    $routes->get('dashboard', 'CustomerController::index');
+    $routes->get('pesan', 'CustomerController::createOrder');
+    $routes->post('pesan', 'CustomerController::storeOrder');
 });

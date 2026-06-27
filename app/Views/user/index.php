@@ -24,6 +24,8 @@
                 <tr class="bg-gray-50 text-gray-400 text-xs font-bold uppercase border-b border-gray-100">
                     <th class="px-6 py-3">No</th>
                     <th class="px-6 py-3">Username</th>
+                    <th class="px-6 py-3">Role</th>
+                    <th class="px-6 py-3">Pelanggan Terkait</th>
                     <th class="px-6 py-3">Dibuat Pada</th>
                     <th class="px-6 py-3 text-right">Aksi</th>
                 </tr>
@@ -31,7 +33,7 @@
             <tbody class="divide-y divide-gray-100 text-sm font-semibold text-gray-700">
                 <?php if (empty($users)): ?>
                     <tr>
-                        <td colspan="4" class="px-6 py-10 text-center text-gray-400 font-medium">Data user tidak ditemukan.</td>
+                        <td colspan="6" class="px-6 py-10 text-center text-gray-400 font-medium">Data user tidak ditemukan.</td>
                     </tr>
                 <?php else: ?>
                     <?php
@@ -48,6 +50,16 @@
                                         <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 text-[10px] font-bold">Aktif (Anda)</span>
                                     <?php endif; ?>
                                 </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <?php if (($u['role'] ?? 'admin') === 'admin'): ?>
+                                    <span class="px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold border border-blue-100">Admin</span>
+                                <?php else: ?>
+                                    <span class="px-2.5 py-1 rounded-full bg-slate-50 text-slate-700 text-xs font-bold border border-slate-200">Pelanggan</span>
+                                <?php endif; ?>
+                            </td>
+                            <td class="px-6 py-4 text-gray-600">
+                                <?= htmlspecialchars($u['nama_pelanggan'] ?? '-') ?>
                             </td>
                             <td class="px-6 py-4"><?= date('d-m-Y H:i:s', strtotime($u['created_at'])) ?></td>
                             <td class="px-6 py-4 text-right flex items-center justify-end gap-2">

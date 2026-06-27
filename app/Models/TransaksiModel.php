@@ -22,7 +22,10 @@ class TransaksiModel extends Model
         'tanggal_masuk', 
         'tanggal_selesai', 
         'status', 
-        'catatan'
+        'catatan',
+        'opsi_pengiriman',
+        'alamat_pengiriman',
+        'status_pengiriman'
     ];
 
     // Dates

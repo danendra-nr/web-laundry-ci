@@ -12,18 +12,21 @@ class PelangganController extends BaseController
         $pelangganModel = new PelangganModel();
         $search = $this->request->getVar('search') ?? '';
 
+        $builder = $pelangganModel->select('pelanggan.*, users.username')
+                                  ->join('users', 'users.pelanggan_id = pelanggan.id', 'left');
+
         if (!empty($search)) {
-            $pelangganModel->groupStart()
-                           ->like('nama', $search)
-                           ->orLike('no_hp', $search)
-                           ->orLike('alamat', $search)
-                           ->groupEnd();
+            $builder->groupStart()
+                    ->like('pelanggan.nama', $search)
+                    ->orLike('pelanggan.no_hp', $search)
+                    ->orLike('pelanggan.alamat', $search)
+                    ->groupEnd();
         }
 
         $pengaturan = (new PengaturanModel())->first();
 
         return view('pelanggan/index', [
-            'pelanggan'  => $pelangganModel->paginate(10, 'pelanggan'),
+            'pelanggan'  => $builder->paginate(10, 'pelanggan'),
             'pager'      => $pelangganModel->pager,
             'search'     => $search,
             'pengaturan' => $pengaturan,

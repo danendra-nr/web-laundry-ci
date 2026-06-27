@@ -30,6 +30,14 @@
 
     <div class="w-full max-w-md bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
         <div class="p-8">
+            <!-- Back to Home -->
+            <div class="mb-6">
+                <a href="<?= base_url('/') ?>" class="text-xs font-bold text-gray-500 hover:text-blue-600 transition-colors flex items-center gap-1.5">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                    Kembali ke Beranda
+                </a>
+            </div>
+
             <!-- Header -->
             <div class="text-center mb-8">
                 <div class="h-14 w-14 rounded-2xl bg-blue-600 flex items-center justify-center text-white font-extrabold text-2xl mx-auto mb-4 shadow-lg shadow-blue-200">L</div>
@@ -77,6 +85,11 @@
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                 </button>
             </form>
+            
+            <div class="text-center mt-6 text-sm">
+                <span class="text-gray-500 font-semibold">Belum punya akun?</span>
+                <a href="<?= base_url('register') ?>" class="text-blue-600 hover:underline font-bold ml-1">Daftar Pelanggan</a>
+            </div>
         </div>
 
         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 text-center text-xs text-gray-400 font-semibold">

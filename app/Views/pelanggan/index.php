@@ -26,6 +26,7 @@
                     <th class="px-6 py-3">Nama</th>
                     <th class="px-6 py-3">No HP</th>
                     <th class="px-6 py-3">Alamat</th>
+                    <th class="px-6 py-3">Username Sesi</th>
                     <th class="px-6 py-3">Ditambahkan</th>
                     <th class="px-6 py-3 text-right">Aksi</th>
                 </tr>
@@ -33,7 +34,7 @@
             <tbody class="divide-y divide-gray-100 text-sm font-semibold text-gray-700">
                 <?php if (empty($pelanggan)): ?>
                     <tr>
-                        <td colspan="6" class="px-6 py-10 text-center text-gray-400 font-medium">Data pelanggan tidak ditemukan.</td>
+                        <td colspan="7" class="px-6 py-10 text-center text-gray-400 font-medium">Data pelanggan tidak ditemukan.</td>
                     </tr>
                 <?php else: ?>
                     <?php
@@ -47,6 +48,13 @@
                             <td class="px-6 py-4 font-bold text-gray-900"><?= htmlspecialchars($p['nama']) ?></td>
                             <td class="px-6 py-4"><?= htmlspecialchars($p['no_hp']) ?></td>
                             <td class="px-6 py-4 text-gray-500 font-medium max-w-xs truncate"><?= htmlspecialchars($p['alamat']) ?></td>
+                            <td class="px-6 py-4">
+                                <?php if (!empty($p['username'])): ?>
+                                    <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-xs font-bold"><?= htmlspecialchars($p['username']) ?></span>
+                                <?php else: ?>
+                                    <span class="text-xs text-gray-400 font-medium italic">Belum punya akun</span>
+                                <?php endif; ?>
+                            </td>
                             <td class="px-6 py-4"><?= date('d-m-Y', strtotime($p['created_at'])) ?></td>
                             <td class="px-6 py-4 text-right flex items-center justify-end gap-2">
                                 <a href="<?= base_url('pelanggan/edit/' . $p['id']) ?>" class="p-2 text-blue-600 hover:bg-blue-50 rounded-xl transition-all" title="Edit">
