@@ -21,7 +21,8 @@ Halaman utama interaktif yang dapat diakses oleh publik untuk mengetahui informa
 ### 2. Portal & Dashboard Pelanggan
 Portal mandiri bagi pelanggan setelah melakukan registrasi/login:
 - **Registrasi Akun**: Pelanggan dapat mendaftar sendiri melalui halaman `/register` yang otomatis akan membuat data profil pelanggan baru.
-- **Pemesanan Mandiri**: Melakukan booking order laundry secara online.
+- **Pemesanan Mandiri & Keranjang Belanja (Shopping Cart)**: Memilih dan memesan beberapa layanan laundry sekaligus dalam satu pesanan terintegrasi. Didukung oleh package `jason-napolitano/codeigniter4-cart-module`.
+- **Alternatif "Timbang di Toko"**: Pilihan apabila pelanggan belum mengetahui berat pasti cuciannya. Sistem akan otomatis menyetel berat awal `0.00` (ditampilkan sebagai status *Menunggu Timbang* di dashboard) dan membiarkan petugas admin melakukan penimbangan serta memperbarui total harga setelah pakaian sampai di workshop.
 - **Opsi Pengiriman & Penjemputan**:
   - `Kirim Sendiri` (Pelanggan mengantar baju ke toko)
   - `Jemput Saja` (Petugas mengambil baju ke alamat pelanggan)
@@ -31,6 +32,7 @@ Portal mandiri bagi pelanggan setelah melakukan registrasi/login:
 - **Pelacakan Status Real-time**: Pelanggan dapat memantau status cucian (`Menunggu`, `Diproses`, `Selesai`, `Diambil`) serta status pengiriman (`None`, `Menunggu Penjemputan`, `Dalam Penjemputan`, `Selesai Dijemput`, `Menunggu Pengantaran`, `Dalam Pengantaran`, `Selesai Diantar`).
 
 ![Dashboard Pelanggan](screenshots/sc3.webp)
+![Pilih Layanan & Keranjang Belanja](screenshots/sc4.webp)
 
 ---
 
