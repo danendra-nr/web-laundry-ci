@@ -61,4 +61,12 @@ $routes->group('customer', ['filter' => 'customer_auth'], function($routes) {
     $routes->get('dashboard', 'CustomerController::index');
     $routes->get('pesan', 'CustomerController::createOrder');
     $routes->post('pesan', 'CustomerController::storeOrder');
+
+    // Cart Routes
+    $routes->get('cart', 'CartController::index');
+    $routes->post('cart/add', 'CartController::add');
+    $routes->post('cart/update', 'CartController::update');
+    $routes->post('cart/remove/(:any)', 'CartController::remove/$1');
+    $routes->post('cart/clear', 'CartController::clear');
+    $routes->post('cart/checkout', 'CartController::checkout');
 });

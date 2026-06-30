@@ -50,6 +50,19 @@
             
             <div class="flex items-center gap-4">
                 <span class="text-sm font-semibold text-gray-600 hidden sm:inline">Halo, <?= esc(session()->get('username')) ?></span>
+                
+                <!-- Cart Link with Badge -->
+                <?php $cartCount = (new \App\Libraries\Cart())->totalItems(); ?>
+                <a href="<?= base_url('customer/cart') ?>" class="relative text-gray-600 hover:text-blue-600 font-bold py-2 px-3 rounded-xl transition-all text-sm flex items-center gap-2 border border-transparent hover:border-blue-50 bg-gray-50 hover:bg-white">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <span class="hidden md:inline">Keranjang</span>
+                    <?php if ($cartCount > 0): ?>
+                        <span class="bg-red-500 text-white font-extrabold text-[10px] w-5 h-5 flex items-center justify-center rounded-full border border-white"><?= $cartCount ?></span>
+                    <?php endif; ?>
+                </a>
+
                 <a href="<?= base_url('logout') ?>" class="text-red-600 hover:bg-red-50 font-bold py-2 px-4 rounded-xl transition-all text-sm flex items-center gap-2 border border-transparent hover:border-red-100">
                     Keluar
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
