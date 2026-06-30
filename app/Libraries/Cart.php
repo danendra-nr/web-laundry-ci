@@ -10,7 +10,7 @@ class Cart
 
     public function __construct()
     {
-        $this->baseCart = new BaseCart();
+        $this->baseCart = \Config\Services::cart();
     }
 
     /**
