@@ -51,6 +51,8 @@ Aplikasi internal untuk mengelola operasional bisnis laundry:
 - **Kelola User**: Manajemen data pengguna internal (tambah, ubah password opsional, pencarian, dan hapus user) dengan keamanan anti-self-delete.
 - **Pengaturan**: Modifikasi profil laundry (nama toko, WhatsApp, alamat, logo) serta pembaruan profil pengguna & password.
 
+![Dashboard Admin](screenshots/sc5.webp)
+
 ---
 
 ## Teknologi
