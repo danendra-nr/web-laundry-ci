@@ -6,7 +6,7 @@ LMS (Laundry Management System) adalah aplikasi berbasis web yang dirancang untu
 
 ---
 
-## 🚀 Fitur Proyek (Update UAS)
+## Fitur Proyek (Update UAS)
 
 Sistem ini memiliki dua kategori akses utama: **Landing Page & Portal Pelanggan** (Publik) serta **Dashboard Internal** (Admin/Staff).
 
